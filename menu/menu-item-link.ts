@@ -8,18 +8,18 @@ import {customElement} from 'lit/decorators.js';
 
 import {styles as listItemStyles} from '../list/lib/listitem/list-item-styles.css.js';
 
-import {MenuItemEl} from './lib/menuitem/menu-item.js';
 import {styles as privateProps} from './lib/menuitem/menu-item-private-styles.css.js';
 import {styles} from './lib/menuitem/menu-item-styles.css.js';
+import {MenuItemLink} from './lib/menuitemlink/menu-item-link.js';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'md-menu-item': MdMenuItem;
+    'md-menu-item-link': MdMenuItemLink;
   }
 }
 
 /** */
-@customElement('md-menu-item')
-export class MdMenuItem extends MenuItemEl {
+@customElement('md-menu-item-link')
+export class MdMenuItemLink extends MenuItemLink {
   static override styles = [privateProps, listItemStyles, styles];
 }

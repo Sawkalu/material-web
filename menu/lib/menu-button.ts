@@ -7,7 +7,7 @@
 import {html, LitElement, PropertyValues} from 'lit';
 import {queryAssignedElements} from 'lit/decorators.js';
 
-import {Menu} from './menu.js';
+import {MenuKind} from './menu.js';
 
 /**
  * Menu button component that automatically attaches a slotted menu to the
@@ -22,30 +22,25 @@ export class MenuButton extends LitElement {
 
   get button(): HTMLElement {
     if (this.buttonAssignedElements.length === 0) {
-      throw new Error('MenuButton: Missing a slot="button" element.')
+      throw new Error('MenuButton: Missing a slot="button" element.');
     }
     return this.buttonAssignedElements[0];
   }
 
-  get menu(): Menu {
+  get menu(): MenuKind {
     if (this.menuAssignedElements.length === 0) {
-      throw new Error('MenuButton: Missing a slot="menu" element.')
+      throw new Error('MenuButton: Missing a slot="menu" element.');
     }
-    if (!(this.menuAssignedElements[0] instanceof Menu)) {
-      throw new Error(
-          'MenuButton: The slot="menu" element must be an instance of the ' +
-          'Menu component.');
-    }
-    return this.menuAssignedElements[0];
+    return this.menuAssignedElements[0] as unknown as MenuKind;
   }
 
   protected override render() {
     return html`
-      <div class="md3-menu-button">
+      <div class="menu-button">
         <span>
           <slot name="button"
-              @click=${this.handleButtonClick}
-              @keydown=${this.handleButtonKeydown}>
+              @click=${this.onButtonClick}
+              @keydown=${this.onButtonKeydown}>
           </slot>
         </span>
         <span><slot name="menu"></slot></span>
@@ -55,7 +50,6 @@ export class MenuButton extends LitElement {
 
   protected override firstUpdated(changedProperties: PropertyValues) {
     super.firstUpdated(changedProperties);
-
     if (!this.menu.anchor) {
       this.menu.anchor = this.button;
     }
@@ -64,7 +58,7 @@ export class MenuButton extends LitElement {
   /**
    * If key event is ArrowUp or ArrowDown, opens the menu.
    */
-  private handleButtonKeydown(event: KeyboardEvent) {
+  private onButtonKeydown(event: KeyboardEvent) {
     if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
 
     if (event.key === 'ArrowUp') {
@@ -72,15 +66,15 @@ export class MenuButton extends LitElement {
     } else if (event.key === 'ArrowDown') {
       this.menu.defaultFocus = 'FIRST_ITEM';
     }
-    this.menu.show();
+    this.menu.open = true;
   }
 
   /**
    * Toggles the menu on button click.
    */
-  private handleButtonClick(event: PointerEvent) {
+  private onButtonClick(event: PointerEvent) {
     if (this.menu.open) {
-      this.menu.close();
+      this.menu.open = false;
       return;
     }
 
@@ -94,6 +88,6 @@ export class MenuButton extends LitElement {
       this.menu.defaultFocus = 'LIST_ROOT';
     }
 
-    this.menu.show();
+    this.menu.open = true;
   }
 }
