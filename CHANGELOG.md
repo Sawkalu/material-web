@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.0-pre.2](https://github.com/material-components/material-web/compare/v1.0.0-pre.1...v1.0.0-pre.2) (2023-01-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **textfield:** remove container-height token
+* **iconbutton:** normalize toggle variant API with regular icon button
+* **iconbutton:** remove icon properties, use slots instead
+
+### Features
+
+* **tokens:** generate tokens v0.152 ([c61f46c](https://github.com/material-components/material-web/commit/c61f46c618c38d45c49e85f809330d40e5de40d3))
+
+
+### Miscellaneous Chores
+
+* update next version ([a539286](https://github.com/material-components/material-web/commit/a539286c3f5f34b7c2969b963b3859ed633a74ef))
+
+
+### Code Refactoring
+
+* **iconbutton:** normalize toggle variant API with regular icon button ([31391eb](https://github.com/material-components/material-web/commit/31391eb610f987a3f66ca07722a8ebca6a0b0a78))
+* **iconbutton:** remove icon properties, use slots instead ([36f1a1a](https://github.com/material-components/material-web/commit/36f1a1a0b34dba43d4a859a19d30070b9998ca9a))
+* **textfield:** remove container-height token ([1d81416](https://github.com/material-components/material-web/commit/1d81416863a2682fc123b6219c155998db574da7))
+
 ## [1.0.0-pre.1](https://github.com/material-components/material-web/compare/v1.0.0-pre.0...v1.0.0-pre.1) (2023-01-09)
 
 
